@@ -18,7 +18,7 @@ jobs:
                 fetch-depth: 0
             - run: |
                   echo "CHANGES<<EOF" >> $GITHUB_ENV
-                  echo $(git log $(git describe --tags --abbrev=0)..HEAD --oneline) >> $GITHUB_ENV
+                  echo "$(git log $(git describe --tags --abbrev=0)..HEAD --oneline)" >> $GITHUB_ENV
                   echo "EOF" >> $GITHUB_ENV
 
             - name: Extract version from branch name (for release branches)
