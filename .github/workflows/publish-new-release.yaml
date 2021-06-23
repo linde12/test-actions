@@ -17,7 +17,9 @@ jobs:
               with:
                 fetch-depth: 0
             - run: |
-                  echo "CHANGES=`git log $(git describe --tags --abbrev=0)..HEAD --oneline`" >> $GITHUB_ENV
+                  echo "CHANGES<<EOF" >> $GITHUB_ENV
+                  echo $(git log $(git describe --tags --abbrev=0)..HEAD --oneline) >> $GITHUB_ENV
+                  echo "EOF" >> $GITHUB_ENV
 
             - name: Extract version from branch name (for release branches)
               if: startsWith(github.event.pull_request.head.ref, 'release/')
